@@ -1,0 +1,73 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$primary: mat.define-palette(mat.$indigo-palette);
+$accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$warn: mat.define-palette(mat.$red-palette);
+
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+$dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+@include mat.all-component-themes($light-theme);
+
+.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+}
+
+/* global layout helpers */
+html,
+body,
+app-root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, Arial, sans-serif;
+}
+.app-shell {
+  display: grid;
+  grid-template-rows: 64px 1fr;
+  grid-template-columns: 260px 1fr;
+  grid-template-areas:
+    'nav nav'
+    'side main';
+  height: 100%;
+}
+.app-nav {
+  grid-area: nav;
+}
+.app-side {
+  grid-area: side;
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
+}
+.app-main {
+  grid-area: main;
+  padding: 16px;
+}
+@media (max-width: 900px) {
+  .app-shell {
+    grid-template-columns: 0 1fr;
+  }
+}
