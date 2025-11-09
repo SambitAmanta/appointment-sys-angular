@@ -1,0 +1,21 @@
+<mat-nav-list>
+    <a mat-list-item routerLink="/services" routerLinkActive="active">Services</a>
+
+    <ng-container *ngIf="role() === 'customer'">
+        <a mat-list-item routerLink="/customer/dashboard" routerLinkActive="active">Customer Dashboard</a>
+        <a mat-list-item routerLink="/customer/appointments" routerLinkActive="active">My Appointments</a>
+    </ng-container>
+
+    <ng-container *ngIf="role() === 'provider'">
+        <a mat-list-item routerLink="/provider/dashboard" routerLinkActive="active">Provider Dashboard</a>
+        <a mat-list-item routerLink="/provider/appointments" routerLinkActive="active">Provider Appointments</a>
+        <a mat-list-item routerLink="/manage/services" routerLinkActive="active">Service Management</a>
+        <a mat-list-item routerLink="/manage/availability" routerLinkActive="active">Availability</a>
+    </ng-container>
+
+    <ng-container *ngIf="role() === 'admin'">
+        <a mat-list-item routerLink="/admin/dashboard" routerLinkActive="active">Admin Dashboard</a>
+    </ng-container>
+
+    <a mat-list-item routerLink="/profile" routerLinkActive="active">Profile & Settings</a>
+</mat-nav-list>
